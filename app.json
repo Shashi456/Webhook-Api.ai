@@ -1,7 +1,6 @@
 {
   "name": "Hotel Chatbot ",
   "description": "API.AI webhook ",
-  "repository": "https://github.com/Shashi456/Webhook-Api.ai",
-  "logo": "http://xvir.github.io/img/apiai.png",
+  "repository": "https://github.com/Shashi456/Webhook-Apiai",
   "keywords": ["api.ai", "natural language"]
 }
