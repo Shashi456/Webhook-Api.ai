@@ -43,7 +43,7 @@ def makeWebhookResult(req):
     city = parameters.get("location")
     print(city)
     main = "https://www.teletextholidays.co.uk/serp-es#/overseas/"
-    search = city + "/"
+    search = ''.join(map(str,city)) + "/"
     t = time.strftime("%Y-%m-%d") + "/"
     end = "Any_London/boardtype=allinclusive/nights=7/adults=2/children=0/minstars=3"
     print(main + t + end)
