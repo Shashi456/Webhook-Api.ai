@@ -30,7 +30,7 @@ def webhook():
     res = makeWebhookResult(req)
 
     res = json.dumps(res, indent=4)
-    print(res)
+    #print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
@@ -46,7 +46,7 @@ def makeWebhookResult(req):
     search = city + "/"
     t = time.strftime("%Y-%m-%d") + "/"
     end = "Any_London/boardtype=allinclusive/nights=7/adults=2/children=0/minstars=3"
-
+    print(main + t + end)
     speech = main + search + t + end
     #else :
     #    return {}
