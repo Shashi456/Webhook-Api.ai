@@ -46,7 +46,6 @@ def makeWebhookResult(req):
     search = ''.join(map(str,city)) + "/"
     t = time.strftime("%Y-%m-%d") + "/"
     end = "Any_London/boardtype=allinclusive/nights=7/adults=2/children=0/minstars=3"
-    print(main + t + end)
     speech = main + search + t + end
     #else :
     #    return {}
