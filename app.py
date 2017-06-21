@@ -10,6 +10,7 @@ from urllib.error import HTTPError
 
 import json
 import os
+from time import strftime 
 
 from flask import Flask
 from flask import request
@@ -26,52 +27,37 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
+    res = makeWebhookResult(req)
 
     res = json.dumps(res, indent=4)
-    # print(res)
+    print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
 
-def processRequest(req):
-    if req.get("result").get("action") != "HotelSearch":
+def makeWebhookResult(req):
+    if req.get("result").get("action") == "DealsDestination":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        city = parameters.get("location")
+        main = "https://www.teletextholidays.co.uk/serp-es#/overseas/"
+        search = city + "/"
+        t = time.strftime("%Y-%m-%d") + "/"
+        end = "Any_London/boardtype=allinclusive/nights=7/adults=2/children=0/minstars=3"
+
+        speech = main + search + t + end
+    else :
         return {}
-  
-    re = req.get("result")
-    parameters = result.get("parameters")
-    city=parameters.get("geo-city")
-    if city is none : 
-        return{}
-    city.lower()
-    res=makeWebhookresult(city)
-    return res
- 
- def makeWebhookResult(city):
-    
-    place={"barcelona"="guide/spain/barcelona/" ,
-    "paris"="guide/france/paris"
-    }
-    
-    main="https://www.alpharooms.com/"
-    search=place[city]
-    end="default.aspx?channel=AlphaRoomsUK"
-
-    # print(json.dumps(item, indent=4))
-
-    speech = main+search+end
-    speech=str(speech)
-
     print("Response:")
     print(speech)
-
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": data,
+        #"data": {},
         # "contextOut": [],
-        "source": "HotelSearch Sample"
+        "source": "apiai-onlinestore-shipping"
     }
+
 
 
 if __name__ == '__main__':
