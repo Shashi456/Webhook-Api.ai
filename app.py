@@ -36,18 +36,20 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") == "DealsDestination":
+   # if req.get("result").get("action") == "DealsDestination":
         result = req.get("result")
         parameters = result.get("parameters")
+
         city = parameters.get("location")
+        print(city)
         main = "https://www.teletextholidays.co.uk/serp-es#/overseas/"
         search = city + "/"
         t = time.strftime("%Y-%m-%d") + "/"
         end = "Any_London/boardtype=allinclusive/nights=7/adults=2/children=0/minstars=3"
 
         speech = main + search + t + end
-    else :
-        return {}
+    #else :
+    #    return {}
     print("Response:")
     print(speech)
     return {
